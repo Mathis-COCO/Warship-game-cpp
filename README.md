@@ -1,6 +1,6 @@
 # bataille-navale-cpp
 
-![warship pic] https://cdn.pixabay.com/photo/2010/12/06/23/warships-1017_960_720.jpg
+https://www.google.com/url?sa=i&url=https%3A%2F%2Fwallpaperaccess.com%2Fwarship&psig=AOvVaw0u-dFQKf3p41tPDncZyHty&ust=1621010793230000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOiSieiNx_ACFQAAAAAdAAAAABAD
 
 Projet qui consiste à créer une bataille navale en C++.
 
