@@ -13,7 +13,7 @@ private:
     Bateau *m_bateaux[7];
 public:
     Plateau(string n);
-    void placeBateau(Bateau *bat,int x, int y,int x2, int y2);
+    bool placeBateau(Bateau *bat,int x, int y,int x2, int y2);
     Case *getCase(int x, int y);
     void tir();
     string getStrPlateau(int l);

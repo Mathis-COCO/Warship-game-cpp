@@ -46,13 +46,13 @@ void jeu(){
         moteur.print(moteur.getJ1(),moteur.getJ2());
         moteur.joue1Tour(moteur.getJ1());
         if (moteur.verifVictoire(moteur.getJ2())){
-            cout<<"----------------------------------------------"<<endl<<endl<<endl<<"Victoire du joueur 1, Ce fut un beau combat"<<endl<<endl<<endl<<"----------------------------------------------";
+            cout<<"----------------------------------------------"<<endl<<endl<<endl<<"Victoire du joueur 1, Ce fut un beau combat"<<endl<<endl<<endl<<"----------------------------------------------"<<endl;
             victoire = true;
         }
         moteur.print(moteur.getJ2(),moteur.getJ1());
         moteur.joue1Tour(moteur.getJ2());
         if (moteur.verifVictoire(moteur.getJ2())) {
-            cout<<"----------------------------------------------"<<endl<<endl<<endl<<"Victoire du joueur 2, Ce fut un beau combat"<<endl<<endl<<endl<<"----------------------------------------------";
+            cout<<"----------------------------------------------"<<endl<<endl<<endl<<"Victoire du joueur 2, Ce fut un beau combat"<<endl<<endl<<endl<<"----------------------------------------------"<<endl;
             victoire = true;
         }
     }

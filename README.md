@@ -6,4 +6,13 @@ Projet qui consiste à créer une bataille navale en C++.
 
 Ce projet est orienté objet.
 
-Le jeu est jouable en jcj (joueur contre joueur)
+Le jeu est jouable en jcj 1 contre 1
+
+# Update 1 :
+
+correction des placements de bateaux.
+
+
+# todo :
+
+corriger l'affichage.

@@ -22,9 +22,9 @@ MoteurBatailleNavale::MoteurBatailleNavale()
 bool MoteurBatailleNavale::verifVictoire(Plateau joueurennemi)
 {
     if (joueurennemi.lost()){
-        return false;
-    } else {
         return true;
+    } else {
+        return false;
     }
 }
 
@@ -37,24 +37,30 @@ void MoteurBatailleNavale::placeBateaux()
         Bateau *bat =j1.getBateau(i);
         string strx;
         string stry;
-        cout<<endl<<"bateau n° "<<i<<", "<<bat->nom()<<" longueur :"<<bat->longueur();
+        cout<<endl<<"bateau n "<<i<<", "<<bat->nom()<<" longueur :"<<bat->longueur();
         cout<<endl<<" sur quelle colonne souhaitez vous placer le debut du bateau ? :";
         cin>>strx;
         cout<<endl<<" sur quelle ligne voulez vous placer le debut du bateau ? :";
         cin>>stry;
-        int x = stoi(strx);
-        int y = stoi(stry);
+        int x = stoi(strx)-1;
+        int y = stoi(stry)-1;
         cout<<endl<<" longueur :"<<bat->longueur();
         cout<<endl<<" sur quelle colonne souhaitez vous placer la fin du bateau ? :";
         cin>>strx;
         cout<<endl<<" sur quelle ligne voulez vous placer la fin du bateau ? :";
         cin>>stry;
-        int x2 = stoi(strx);
-        int y2 = stoi(stry);
-        if (x==x2&& abs(y-y2)==bat->longueur()-1 &&x>0&&11>x&&x2>0&&11>x2&&y>0&&11>y&&y2>0&&11>y2){
-            j1.placeBateau(bat,x,y,x2,y2);
-        } else if (y==y2&& abs(x-x2)==bat->longueur()-1 &&x>0&&11>x&&x2>0&&11>x2&&y>0&&11>y&&y2>0&&11>y2){
-            j1.placeBateau(bat,x,y,x2,y2);
+        int x2 = stoi(strx)-1;
+        int y2 = stoi(stry)-1;
+        if (x==x2&& abs(y-y2)==bat->longueur()-1 &&x>=0&&11>x&&x2>=0&&11>x2&&y>=0&&11>y&&y2>=0&&11>y2){
+            if(j1.placeBateau(bat,x,y,x2,y2)){
+                cout<<endl<<"Moussaillon, tu places tes bateaux n'importe comment, recommence"<<endl;
+                i--;
+            }
+        } else if (y==y2&& abs(x-x2)==bat->longueur()-1 &&x>=0&&11>x&&x2>=0&&11>x2&&y>=0&&11>y&&y2>=0&&11>y2){
+            if(j1.placeBateau(bat,x,y,x2,y2)){
+                cout<<endl<<"Moussaillon, tu places tes bateaux n'importe comment, recommence"<<endl;
+                i--;
+            }
         } else {
             cout<<endl<<"Moussaillon, tu places tes bateaux n'importe comment, recommence"<<endl;
             i--;
@@ -71,23 +77,30 @@ void MoteurBatailleNavale::placeBateaux()
         cin>>strx;
         cout<<endl<<" sur quelle ligne voulez vous placer le debut du bateau ? :";
         cin>>stry;
-        int x = stoi(strx);
-        int y = stoi(stry);
+        int x = stoi(strx)-1;
+        int y = stoi(stry)-1;
         cout<<endl<<" longueur :"<<bat->longueur();
         cout<<endl<<" sur quelle colonne souhaitez vous placer la fin du bateau ? :";
         cin>>strx;
         cout<<endl<<" sur quelle ligne voulez vous placer la fin du bateau ? :";
         cin>>stry;
-        int x2 = stoi(strx);
-        int y2 = stoi(stry);
-        if (x==x2&& abs(y-y2)==bat->longueur()-1 &&x>0&&11>x&&x2>0&&11>x2&&y>0&&11>y&&y2>0&&11>y2){
-            j2.placeBateau(bat,x,y,x2,y2);
-        } else if (y==y2&& abs(x-x2)==bat->longueur()-1 &&x>0&&11>x&&x2>0&&11>x2&&y>0&&11>y&&y2>0&&11>y2){
-            j2.placeBateau(bat,x,y,x2,y2);
+        int x2 = stoi(strx)-1;
+        int y2 = stoi(stry)-1;
+        if (x==x2&& abs(y-y2)==bat->longueur()-1 &&x>=0&&11>x&&x2>=0&&11>x2&&y>=0&&11>y&&y2>=0&&11>y2){
+            if(j2.placeBateau(bat,x,y,x2,y2)){
+                cout<<endl<<"Moussaillon, tu places tes bateaux n'importe comment, recommence"<<endl;
+                i--;
+            }
+        } else if (y==y2&& abs(x-x2)==bat->longueur()-1 &&x>=0&&11>x&&x2>=0&&11>x2&&y>=0&&11>y&&y2>=0&&11>y2){
+            if(j2.placeBateau(bat,x,y,x2,y2)){
+                cout<<endl<<"Moussaillon, tu places tes bateaux n'importe comment, recommence"<<endl;
+                i--;
+            }
         } else {
             cout<<endl<<"Moussaillon, tu places tes bateaux n'importe comment, recommence"<<endl;
             i--;
         }
+        cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<"La partie vient de commencer, on saute quelques lignes pour eviter la triche ."<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
     }
 
 
@@ -102,9 +115,9 @@ void MoteurBatailleNavale::joue1Tour(Plateau joueur)
 
 void MoteurBatailleNavale::print(Plateau jactif, Plateau jafk)
 {
-    cout<<"               Votre Plateau              "<<"    |    "<<"               Plateau ennemi             "<<endl;
-    cout<<"    1   2   3   4   5   6   7   8   9   10"<<"    |    "<<"    1   2   3   4   5   6   7   8   9   10"<<endl;
-    cout<<"  _______________________________________ "<<"    |    "<<"  _______________________________________ "<<endl;
+    cout<<"               Votre Plateau              "<<"     |    "<<"               Plateau ennemi             "<<endl;
+    cout<<"    1   2   3   4   5   6   7   8   9   10"<<"     |    "<<"    1   2   3   4   5   6   7   8   9   10"<<endl;
+    cout<<"   _______________________________________ "<<"    |    "<<"   _______________________________________ "<<endl;
     cout<<"1 "<<jactif.getStrPlateau(0)<<"    |    "<<"1 "<<jafk.getStrPlateau(0)<<endl;
     cout<<"  |___|___|___|___|___|___|___|___|___|___|"<<"    |    "<<"  |___|___|___|___|___|___|___|___|___|___|"<<endl;
     cout<<"2 "<<jactif.getStrPlateau(1)<<"    |    "<<"2 "<<jafk.getStrPlateau(1)<<endl;

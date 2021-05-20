@@ -1,6 +1,7 @@
 #include "plateau.h"
 #include "case.h"
 #include "bateau.h"
+#include <sstream>
 #include <iostream>
 using namespace std;
 
@@ -25,33 +26,58 @@ m_bateaux[5] = new Bateau("Patrouilleur",2);
 m_bateaux[6] = new Bateau("Sous-Marin",3);
 }
 
-void Plateau::placeBateau(Bateau *bat, int x, int y,int x2, int y2)
+bool Plateau::placeBateau(Bateau *bat, int x, int y,int x2, int y2)
 {
     if (x==x2) {
         if(y<y2){
-            for(int i = y ;i<=y2+1;i++){
+            for(int i = y ;i<=y2;i++){
+                Case *caseadd = m_plateau[x][i];
+                if(caseadd->bateau_ici()){
+                return true;
+                }
+            }
+            for(int i = y ;i<=y2;i++){
                 Case *caseadd = m_plateau[x][i];
                 caseadd->addBateau(bat,i-y);
             }
         } else {
-            for(int i = y2 ;i<=y+1;i++){
+            for(int i = y2 ;i<=y;i++){
+                Case *caseadd = m_plateau[x][i];
+                if(caseadd->bateau_ici()){
+                    return true;
+                }
+            }
+            for(int i = y2 ;i<=y;i++){
                 Case *caseadd = m_plateau[x][i];
                 caseadd->addBateau(bat,i-y2);
             }
         }
     } else {
         if(x<x2){
-            for(int i = x ;i<=x2+1;i++){
+            for(int i = x ;i<=x2;i++){
+                Case *caseadd = m_plateau[i][y];
+                if(caseadd->bateau_ici()){
+                    return true;
+                }
+            }
+            for(int i = x ;i<=x2;i++){
                 Case *caseadd = m_plateau[i][y];
                 caseadd->addBateau(bat,i-x);
             }
         } else {
-            for(int i = x2 ;i<=x+1;i++){
+            for(int i = x2 ;i<=x;i++){
+                Case *caseadd = m_plateau[i][y];
+                if(caseadd->bateau_ici()){
+                    return true;
+                    }
+            }
+            for(int i = x2 ;i<=x;i++){
                 Case *caseadd = m_plateau[i][y];
                 caseadd->addBateau(bat,i-x2);
             }
         }
     }
+    return false;
 }
 
 Case *Plateau::getCase(int x, int y)
@@ -106,9 +132,9 @@ string Plateau::getStrPlateau(int l)
 {
     string strRet = "|";
     for(int i = 0;i< 10;i++){
-        if(m_plateau[l][i]->bateau_ici()&&m_plateau[l][i]->wasHit()){
+        if(m_plateau[i][l]->bateau_ici()&&m_plateau[i][l]->wasHit()){
             strRet += " X |";
-        } else if (m_plateau[l][i]->wasHit()){
+        } else if (m_plateau[i][i]->wasHit()){
             strRet += " ~ |";
         } else {
             strRet += "   |";
